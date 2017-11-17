@@ -1,0 +1,97 @@
+﻿
+
+@{
+    ViewBag.Title = "AvaliarEncModerador";
+}
+
+
+<div>
+    @using (Html.BeginForm("Create", "AssignRole"))
+    {
+        if (Session["falhaAvaliacao"] != null)
+        {
+            <script language="javascript">
+            alert("Falha na Validacao.");
+            </script>
+            Session["falhaAvaliacao"] = null;
+        }
+
+        if (Session["alertaAprovaReprova"] != null)
+        {
+            <script language="javascript">
+                alert("Avaliacao efetuada com suceso.");
+            </script>
+            Session["alertaAprovaReprova"] = null;        // desativa alerta.
+        }
+
+    }
+</div>
+
+
+<h2> Avaliar Encaminhamentos - Moderador </h2>
+
+<hr />
+
+
+<div>
+
+
+    <form action="~/Encaminhamento/ConsultaEncStatusTodos" method="post">
+        <select name="consultaStatus" required>
+            <option value="0">Nao Avaliado</option>
+            <option value="3">Alterado</option>
+        </select>
+
+        <button type="submit" class="btn btn-success">Consultar</button>
+
+    </form>
+
+    <br />
+
+    <table class="table-striped table-hover" cellspacing="10" cellpadding="10">
+        <thead>
+            <tr>
+                <th>Status</th>
+                <th>Data</th>
+                <th>Descricao</th>
+            </tr>
+        </thead>
+        @foreach (var itm in @ViewBag.ListaConsultaEnc)
+        {
+            <tr>
+                <td>
+                    @{
+                        if (@itm.status == 0)
+                        { <div>Nao Avaliado</div> }
+                        else
+                        if (@itm.status == 3)
+                        { <div>Alterado</div>     }
+                        else
+                        { <div>Sem Status</div>    }
+                    }
+                </td>
+                
+                <td> @itm.dataEnc.ToString("dd/MM/yyyy")  </td>
+                
+                <td width="700">@itm.descricao</td>
+
+                <td>
+                    <a href="~/Encaminhamento/AvaliarEncModeradorConsulta/@itm.id" class="btn btn-default" title="Avaliar">  <i class="glyphicon glyphicon-check">   </i> </a>
+                </td>
+
+            </tr>
+
+                        }
+
+    </table>
+
+</div>
+
+
+<br>
+<hr />
+<div>
+    <form action="/Usuario/Login" method="post">
+        <button type="submit" class="btn btn-danger" name="btAlterarPerfil">Voltar</button>
+    </form>
+</div>

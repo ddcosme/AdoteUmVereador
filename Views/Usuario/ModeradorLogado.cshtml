@@ -1,0 +1,63 @@
+﻿
+@{
+    ViewBag.Title = "ModeradorLogado";
+}
+
+
+<div>
+    @using (Html.BeginForm("Create", "AssignRole"))
+    {
+        if (Session["alertacaoUsuarioSucesso"] != null)
+        {
+            <script language="javascript">
+            alert("Alteracao do Perfil efetuada com sucesso.");
+            </script>
+            Session["alertacaoUsuarioSucesso"] = null;
+        }
+        
+    }
+</div>
+
+
+
+
+<div>
+    Seja bem-vindo Moderador, @ViewBag.UsuarioSessao.nome  <br />
+</div>
+
+
+<div>
+
+    <table cellpadding="30" cellspacing="30" class="jumbotron" border="1" style="border-color:white" align="center">
+        <tr>
+            <td >
+                <form action="/Encaminhamento/AvaliarEncModerador" method="post">
+                    <h3>Consultar e Avaliar Encaminhamentos.</h3>
+                    <button type="submit" class="btn btn-primary btn-lg" name="btCriarEnc">Encaminhamentos</button>
+                </form>
+            </td>
+            <td >
+                <form action="/Encaminhamento/RelatorioEncModerador" method="post">
+                    <h3>Relatório de Encaminhamentos Avaliados. </h3>
+                    <button type="submit" class="btn btn-success" name="btConsultarEnc">Relatórios</button>
+                </form>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <form action="/Usuario/AlterarPerfilController" method="post">
+                    <h3>Visualizar e alterar dados do perfil. </h3>
+                    <button type="submit" class="btn btn-danger" name="btAlterarPerfil">Perfil</button>
+                </form>
+            </td>
+        </tr>
+
+
+    </table>
+
+
+
+
+
+
+</div>

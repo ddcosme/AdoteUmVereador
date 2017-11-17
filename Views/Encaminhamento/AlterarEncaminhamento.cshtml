@@ -1,0 +1,89 @@
+﻿
+@{
+    ViewBag.Title = "AlterarEncaminhamento";
+}
+
+<h2> Alterar Encaminhamenho (C) </h2>
+
+<hr />
+
+<div> <center> @TempData["msgRetornoAlteracao"] </center> </div> 
+
+
+<table align="center" style="background-color:#eeeeee">
+    <tr>
+        <td>
+            @{
+                if (@ViewBag.ConsulaModeracao != null)
+                {
+                    <div style="color:red">
+                        Motivo da reprovação: @ViewBag.ConsulaModeracao.descricao
+                    </div>
+                 }
+              }
+
+            <div>
+
+                <form action="/Encaminhamento/AlterarEnc/" method="post">
+
+                    <div>
+                        Anexo:
+                        <input type="file" name="anexo" accept="image/*|doc" />
+                    </div>
+
+                    <div>
+                        Descrição:
+                        <br />
+                        <textarea name="descricao" style="width:600px; height:200px;" wrap="soft" maxlength="499" class="form-control" required> @ViewBag.ConsultaUmEncaminhamento.descricao </textarea>
+                    </div>
+
+                    <div>
+                        Tipo de Encaminhamento:
+                        <br />
+                        <select name="idTipoEnc" required>
+                            <option value="@ViewBag.ConsultaUmEncaminhamento.idTipoEnc" selected></option>
+                            <option value="1">Projeto de Lei</option>
+                            <option value="2">Crítica</option>
+                            <option value="3">Sugestão</option>
+                            <option value="4">Denûncia</option>
+                            <option value="5">Agradecimento</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        Ao Vereador:
+                        <br />
+                        <input type="text" name="vereador" disabled value="@ViewBag.UsuarioSessao.municipio" />
+                    </div>
+
+                    <br />
+
+                    <input type="text" name="id" value="@ViewBag.ConsultaUmEncaminhamento.id" hidden />
+                    <input type="text" name="dataEnc" value="@ViewBag.ConsultaUmEncaminhamento.dataEnc" hidden />
+                    <input type="text" name="status" value="@ViewBag.ConsultaUmEncaminhamento.status" hidden />
+                    <input type="text" name="idVereador" value="@ViewBag.ConsultaUmEncaminhamento.idVereador" hidden />
+                    <input type="text" name="idCidadao" value="@ViewBag.ConsultaUmEncaminhamento.idCidadao" hidden />
+
+                    <div>
+                        <input type="submit" value="Alterar Encaminhamento" class="btn btn-primary btn-lg" />
+                    </div>
+
+
+                </form>
+
+            </div>
+
+        </td>
+    </tr>
+</table>
+
+
+
+<br>
+<hr />
+<div>
+    @Html.ActionLink("Cancelar - Voltar", null, null, null, new { href = Request.UrlReferrer })
+</div>
+
+
+

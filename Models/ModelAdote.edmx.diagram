@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="3d337a293b0d424f8fb55a4472cd84b1" Name="Diagram1" ZoomLevel="86">
+        <EntityTypeShape EntityType="DbAdoteModel.Administrador" Width="1.5" PointX="16.625" PointY="10.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DbAdoteModel.Camara" Width="1.5" PointX="0.75" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="DbAdoteModel.Encaminhamento" Width="2.125" PointX="10" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DbAdoteModel.Estado" Width="1.5" PointX="0.75" PointY="10.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DbAdoteModel.EventoEncaminhamento" Width="2.125" PointX="12.75" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DbAdoteModel.Moderacao" Width="1.75" PointX="10.375" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DbAdoteModel.Moderador" Width="1.5" PointX="8" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DbAdoteModel.TipoEncaminhamento" Width="1.875" PointX="7.5" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DbAdoteModel.Usuario" Width="1.5" PointX="5.625" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DbAdoteModel.Vereador" Width="1.5" PointX="3.375" PointY="6" IsExpanded="true" />
+        <AssociationConnector Association="DbAdoteModel.FK__Camara__idEstado__2F10007B" ManuallyRouted="false" />
+        <AssociationConnector Association="DbAdoteModel.FK__Vereador__idCama__33D4B598" ManuallyRouted="false" />
+        <AssociationConnector Association="DbAdoteModel.FK__Encaminha__idCid__412EB0B6" ManuallyRouted="false" />
+        <AssociationConnector Association="DbAdoteModel.FK__Encaminha__idTip__3F466844" ManuallyRouted="false" />
+        <AssociationConnector Association="DbAdoteModel.FK__Encaminha__idVer__403A8C7D" ManuallyRouted="false" />
+        <AssociationConnector Association="DbAdoteModel.FK__EventoEnc__idEnc__440B1D61" ManuallyRouted="false" />
+        <AssociationConnector Association="DbAdoteModel.FK__Moderacao__idEnc__47DBAE45" ManuallyRouted="false" />
+        <AssociationConnector Association="DbAdoteModel.FK__Moderacao__idMod__46E78A0C" ManuallyRouted="false" />
+        <AssociationConnector Association="DbAdoteModel.FK__Moderador__idUsu__37A5467C" ManuallyRouted="false" />
+        <AssociationConnector Association="DbAdoteModel.FK__Usuario__IdVerea__48CFD27E" ManuallyRouted="false" />
+        <AssociationConnector Association="DbAdoteModel.FK__Vereador__idUsua__32E0915F" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="DbAdoteModel.Municipio" Width="1.5" PointX="16.125" PointY="6.375" />
+        <EntityTypeShape EntityType="DbAdoteModel.RespostaPadraoVereador" Width="1.5" PointX="16.125" PointY="8.25" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

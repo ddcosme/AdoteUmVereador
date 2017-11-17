@@ -1,0 +1,36 @@
+﻿
+@{
+    ViewBag.Title = "VisualizarPaginaRespostaEnc";
+}
+
+<h2>Visualizar Resposta do Encaminhamento</h2>
+
+<hr />
+
+<div class="container">
+
+    <table class="table table-striped">
+        
+        <tr>
+            <td> <b> </>Anexo:</b> </td>
+            <td> <a href="/Imagens/@ViewBag.ConsulaEventoEnc.anexo" target="_blank">Imagem</a> </td>
+        </tr>
+
+        <tr>
+            <td colspan="2"><b>Descrição:</b> <br /> @ViewBag.ConsulaEventoEnc.descricao</td>
+        </tr>
+    </table>
+
+    <br />
+
+    <br>
+    <hr />
+
+    <div>
+        <form action="/Encaminhamento/ConsultarEncaminhamento" method="post">
+            <button type="submit" class="btn btn-danger" name="btAlterarPerfil">Voltar - Cancelar</button>
+        </form>
+    </div>
+
+
+</div>

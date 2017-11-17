@@ -1,0 +1,129 @@
+﻿
+@{
+    ViewBag.Title = "FormularioRespostaEncVereador";
+}
+
+
+<script type='text/javascript'>
+    function CarregaDescricao(descTemp)
+    {
+        document.getElementById("descricao").value = descTemp.value;
+    }
+</script>
+
+
+<h2> Formulário de Resposta do Encaminhamento</h2>
+
+<hr />
+
+<div>
+
+    <table class="table-striped" width="700" >
+        <tr>
+            <td> <b>Data:</b> </td>
+            <td>@ViewBag.ConsultaUmEncaminhamento.dataEnc.ToString("dd/MM/yyyy")</td>
+            
+        </tr>
+        <tr>
+            <td> <b> </>Anexo:</b> </td>
+            <td> <a href="/Imagens/@ViewBag.ConsultaUmEncaminhamento.anexo" target="_blank">Imagem</a> </td>
+        </tr>
+        <tr>
+            <td> <b>Cidadão:</b> </td>
+            <td>@ViewBag.CidadaoNome</td>
+        </tr>
+        <tr>
+            <td> <b>Tipo do Encaminhamento:</b> </td>
+            <td>
+                @{
+                    if (@ViewBag.ConsultaUmEncaminhamento.idTipoEnc == 1)
+                    { <div>Projeto de Lei</div> }
+                    else if (@ViewBag.ConsultaUmEncaminhamento.idTipoEnc == 2)
+                    { <div>Crítica</div>     }
+                    else if (@ViewBag.ConsultaUmEncaminhamento.idTipoEnc == 3)
+                    { <div>Sugestão</div>     }
+                    else if (@ViewBag.ConsultaUmEncaminhamento.idTipoEnc == 4)
+                    { <div>Denûncia</div>     }
+                    else
+                    { <div>Agradecimento</div>    }
+                }
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2"><b>Descrição:</b> <br /> @ViewBag.ConsultaUmEncaminhamento.descricao</td>
+        </tr>
+    </table>
+</div>
+
+    <br />
+
+    <div>
+
+        <form action="/EventoEncaminhamento/CriarEnventoEncaminhamento/" method="post">
+
+            <input type="text" name="relator" value="@ViewBag.ConsultaUmEncaminhamento.idVereador" hidden />  <!-- relator idVerador -->
+
+            <!--dataEnc = Data e hora atual -->
+            
+            <table cellpadding="20" cellspacing="20" class="table-bordered">
+                <tr>
+                    <td>
+                        Descrição da Resposta:  <br /> 
+                        <textarea required id="descricao" name="descricao" style="width:600px; height:200px;" wrap="soft" maxlength="499" class="form-control"></textarea>
+                    </td>
+                    <td>
+                        Ou ; <br />
+                        Utilizar uma Resposta Padrão para responder este Encaminhamento: <br />
+                        
+                        <select name="descricaoRespPadrao" onchange="CarregaDescricao(this)">
+                            <option value="null" selected>Escolha o Assunto</option>
+                            @if (@ViewBag.ListaRespPadrao != null)
+                            {
+                                foreach (var assuntos in @ViewBag.ListaRespPadrao)
+                                {
+                                    <option value="@assuntos.descricaoRespsta">@assuntos.assunto</option>
+                                }
+                            }
+                        </select>
+
+                    </td>
+                </tr>
+            </table>
+            
+            Anexo: 
+            <input type="file" name="anexo" accept="image/*|doc" />
+                        
+            <input type="text" name="idEnc" value="@ViewBag.ConsultaUmEncaminhamento.id" hidden />    <!-- idEnc -->
+
+            <br />
+            <input type="submit" value="Responder Encaminhamento" class="btn btn-primary btn-lg" />
+
+            <br />
+            <br />
+            Ou
+            <br />
+            Salvar a Descrição da Resposta como padrão; <br />
+            Sendo obrigatório o preenchimento de um assunto para esta resposta padrão. 
+            <br />
+            <input type="text" name="assunto" maxlength="49" size="49"/>    <br />
+            <br />
+            <input type="submit" value="Salvar como resposta padrão" class="btn btn-success" />
+
+        </form>
+
+    </div>
+
+
+
+
+
+
+<br>
+<hr />
+<div>
+    <form action="/Encaminhamento/ResponderEncVereador" method="post">
+        <button type="submit" class="btn btn-danger" name="btAlterarPerfil">Voltar - Cancelar</button>
+    </form>
+</div>
+
+

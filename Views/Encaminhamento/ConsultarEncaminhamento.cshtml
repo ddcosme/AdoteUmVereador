@@ -1,0 +1,100 @@
+﻿
+@{
+    ViewBag.Title = "ConsultarEncaminhamento";
+}
+
+<h2> Consultar Encaminhamenhos (C) </h2>
+
+<hr />
+
+<div> <center> @TempData["msgRetornoConsulta"] </center> </div> 
+
+
+<div>
+
+    <form action="~/Encaminhamento/ConsultaEncStatus" method="post">
+        <select name="consultaStatus" required>
+            <option value="0">Nao Avaliado</option>
+            <option value="1">Aprovado</option>
+            <option value="2">Respondido</option>
+            <option value="3">Alterado</option>
+            <option value="4">Reprovado</option>
+        </select>
+        <button type="submit" class="btn btn-success">Consulta</button>
+    </form>
+
+    <br />
+
+    <table class="table-striped table-hover" cellspacing="10" cellpadding="10">
+        <thead>
+            <tr>
+                <th>Status</th>
+                <th>Data</th>
+                <th>Descricao</th>
+            </tr>
+        </thead>
+        @foreach (var itm in ViewBag.ListaConsultaEnc)
+        {
+            <tr>
+                <td>
+                    @{
+                        if (@itm.status == 0)
+                        { <div>Nao Avaliado</div> }
+                        else
+                        if (@itm.status == 1)
+                        { <div>Aprovado</div>     }
+                        else
+                        if (@itm.status == 2)
+                        { <div>Respondido</div>   }
+                        else
+                        if (@itm.status == 3)
+                        { <div>Alterado</div>     }
+                        else
+                        { <div>Reprovado</div>    }
+                    }
+                </td>
+                
+                <td> @itm.dataEnc.ToString("dd/MM/yyyy")  </td>
+                <td width="700">@itm.descricao</td>
+                
+                <td> 
+                     @{
+                         if (@itm.status == 0 || @itm.status == 3 || @itm.status == 4)
+                         {
+                            <a href="~/Encaminhamento/AlterarEncaminhamentoView/@itm.id" class="btn btn-default" title="Alterar este Encaminhamento"> <i class="glyphicon glyphicon-pencil"> </i> </a>
+                         }
+                      }
+                </td>
+
+                <td>
+                    @{
+                        if (@itm.status == 0 || @itm.status == 3)
+                        {
+                            <a href="~/Encaminhamento/ExcluirEnc/@itm.id" class="btn btn-danger" title="Excluir este Escaminhamento"> <i class="glyphicon glyphicon-trash"> </i> </a> 
+                        }
+                     }
+                </td>
+
+                <td>
+                    @{
+                        if (@itm.status == 2)
+                        {
+                            <a href="~/Encaminhamento/VisualizarRespostaEnc/@itm.id" class="btn btn-default" title="Visualizar resposta do encaminhamento"> <i class="glyphicon glyphicon-eye-open"> </i> </a>
+                        }
+                    }
+                </td>
+
+            </tr>
+
+        }  
+
+    </table>
+
+</div>
+
+
+<div>
+    <form action="/Usuario/Login" method="post">
+        <button type="submit" class="btn btn-danger" name="btAlterarPerfil">Voltar</button>
+    </form>
+</div>

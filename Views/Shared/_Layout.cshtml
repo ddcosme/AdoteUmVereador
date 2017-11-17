@@ -1,0 +1,76 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adote um Vereador</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+    <style type="text/css">
+        button {
+            margin-top: 10px;
+        }
+
+        .jumbotron {
+            width: 400px;
+            text-align: center;
+            margin-top: 20px;
+            /* margin-left: auto;
+            margin-right: auto; */
+        }
+
+        /*.form-control {
+            margin-bottom: 5px;
+        }*/
+
+    </style>
+
+
+
+</head>
+<body>
+    <div class="container body-contentnavbar navbar-inverse ">
+        <div class="container">
+            <img src="~/Imagens/logo-min.png" />
+            <img align="right" src="~/Imagens/bandeira-min.png" />
+            <br />
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Início", "Index", "Home")</li>
+                    <li>@Html.ActionLink("Pesquisa", "Pesquisa", "Home")</li>
+                    <li>@Html.ActionLink("Notícias", "Noticias", "Home")</li>
+                    <li>
+                        @if (Session["autenticacaoLogin"] != null)
+                        {
+                            <a href="~/Usuario/LogOff" title="Desconectar - Sair"> <i class="glyphicon glyphicon-log-out"> </i>Sair</a>
+                        }
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="container body-content">
+        @RenderBody()
+
+
+        <hr />
+        <footer>
+            <center> <p>&copy; @DateTime.Now.Year - Adote um Vereador</p> </center>
+        </footer>
+    </div>
+
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,78 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div>
+    @using (Html.BeginForm("Create", "AssignRole"))
+    {
+        if (Session["alertaFalhaLogin"] != null)
+        {
+            <script language="javascript">
+                alert("e-mail ou senha inválido.");
+            </script>
+            Session["alertaFalhaLogin"] = null;
+        }
+
+        if (Session["alertaUsuarioCriado"] != null)
+        {
+            <script language="javascript">
+                alert("Solicitação de cadatrado realizada com sucesso.");
+            </script>
+            Session["alertaUsuarioCriado"] = null;
+        }
+
+        if (Session["alertaLogoff"] != null)
+        {
+            <script language="javascript">
+                alert("Usuário desconectado com sucesso.");
+            </script>
+            Session["alertaLogoff"] = null;
+        }
+
+    }
+</div>
+
+
+
+<table>
+    <tr>
+        <td>
+            <div class="jumbotron">
+                <h3>Conectar-se</h3>
+                <form action="/Usuario/Login" method="post">
+                    <div class="row">
+                        <label>E-mail: </label>
+                        <input type="text" id="email" name="email" class="form-control" required autofocus />
+                    </div>
+                    <div class="row">
+                        <label>Senha: </label>
+                        <input type="password" id="senha" name="senha" class="form-control" required />
+                    </div>
+                    <div class="row">
+                        <button type="submit" class="btn btn-success" name="btEntrar">Entrar</button>
+                    </div>
+
+                </form>
+
+           
+            </div>
+
+            <form action="/Usuario/CadastrarUsuario" method="post">
+                <div class="row">
+                    <label>Caso não possua cadastro: </label>
+                    <br />
+                    <button type="submit" class="btn btn-danger">Cadastrar</button>
+                </div>
+            </form>
+
+        </td>
+
+        <td>
+
+            <div class="jumbotron">
+                <h3>Informações sobre Encaminhamentos e Vereadores.</h3>
+                <p><a href="/Home/Pesquisa" class="btn btn-primary btn-lg"> Pesquisar </a></p>
+            </div>
+        </td>
+    </tr>
+</table>

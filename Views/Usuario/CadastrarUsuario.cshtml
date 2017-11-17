@@ -1,0 +1,99 @@
+﻿
+@{
+    ViewBag.Title = "CadastrarUsuario";
+}
+
+
+
+
+<div>
+    @using (Html.BeginForm("Create", "AssignRole"))
+    {
+        if (Session["alertaFalhaCadastroUsu"] != null)
+        {
+            <script language="javascript">
+                alert("Falha na solicitação de cadastro.");
+            </script>
+            Session["alertaFalhaCadastroUsu"] = null;
+        }
+    }
+</div>
+
+
+
+<h3>Cadastro Cidadão</h3>
+<hr />
+
+
+<form action="/Usuario/ConfirmarCadastroUsuario" method="post">
+    <table cellspacing="10" cellpadding="5" style="background-color:#eeeeee">
+        <tr>
+            <td align="right">
+                Número do RG:
+            </td>
+            <td>
+                <input type="text" id="rg" name="rg" required maxlength="7" size="7" />
+            </td>
+            <td align="right">
+                CPF:
+            </td>
+            <td>
+                <input type="text" id="cpf" name="cpf" required maxlength="11" size="11" />
+            </td>
+        </tr>
+        <tr>
+            <td align="right">
+                Sexo:
+            </td>
+            <td>
+                <select id="sexo" name="sexo">
+                    <option value="M">Masculino</option>
+                    <option value="F">Feminino</option>
+                    <option value="O">Outros</option>
+                </select>
+            </td>
+            <td align="right">
+                Nome:
+            </td>
+            <td>
+                <input type="text" id="nome" name="nome" required size="50" maxlength="50" />
+            </td>
+        </tr>
+        <tr>
+            <td align="right">
+                Estado:
+            </td>
+            <td>
+                <input type="text" id="estado" name="estado" required maxlength="2" size="1" />
+            </td>
+            <td align="right">
+                E-mail:
+            </td>
+            <td>
+                <input type="email" id="email" name="email" required size="50" maxlength="50" />
+            </td>
+        </tr>
+        <tr>
+            <td align="right">
+                Município:
+            </td>
+            <td>
+                <input type="text" id="municipio" name="municipio" required size="20" maxlength="20" />
+            </td>
+            <td align="right">
+                Senha:
+            </td>
+            <td>
+                <input type="password" id="senha" name="senha" required />
+            </td>
+       </tr>
+        <tr>
+            <td>
+                <button type="submit" class="btn btn-success">Confirmar Cadastro</button>
+            </td>
+        </tr>
+
+    </table>
+
+</form>
+

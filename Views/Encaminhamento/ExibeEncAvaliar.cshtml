@@ -1,0 +1,69 @@
+﻿
+@{
+    ViewBag.Title = "ExibeEncAvaliar";
+}
+
+<h2> Avaliação do Encaminhamento</h2>
+
+<hr />
+
+<div class="container">
+
+
+
+    <table class="table table-striped">
+        <tr>
+            <td> <b>Data:</b> </td>
+            <td>@ViewBag.ConsultaUmEncaminhamento.dataEnc.ToString("dd/MM/yyyy")</td>
+        </tr>
+        <tr>
+            <td> <b> </>Anexo:</b> </td>
+            <td> <a href="/Imagens/@ViewBag.ConsultaUmEncaminhamento.anexo" target="_blank">Imagem</a> </td>
+        </tr>
+        <tr>
+            <td> <b>Encaminhamento efetuado pelo cidadão:</b> </td>
+            <td>@ViewBag.CidadaoNome</td>
+        </tr>
+        <tr>
+            <td> <b>Tipo de Encaminhamento:</b> </td>
+            <td>
+                @{
+                    if (@ViewBag.ConsultaUmEncaminhamento.idTipoEnc == 1)
+                    { <div>Projeto de Lei</div> }
+                    else if (@ViewBag.ConsultaUmEncaminhamento.idTipoEnc == 2)
+                    { <div>Crítica</div>     }
+                    else if (@ViewBag.ConsultaUmEncaminhamento.idTipoEnc == 3)
+                    { <div>Sugestão</div>     }
+                    else if (@ViewBag.ConsultaUmEncaminhamento.idTipoEnc == 4)
+                    { <div>Denûncia</div>     }
+                    else
+                    { <div>Agradecimento</div>    }
+                }
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2"><b>Descrição:</b> <br /> @ViewBag.ConsultaUmEncaminhamento.descricao</td>
+        </tr>
+    </table>
+
+    <br />
+
+    <div>
+        <form action="~/Encaminhamento/ReprovarEncModerador/@ViewBag.ConsultaUmEncaminhamento.id" method="post">
+            Motivo da rejeição <input type="text" maxlength="499" size="100" name="descricao" required/>
+            <br />
+            <input type="submit" value="Reprovar Encaminhamento" class="btn btn-danger" /> <i class="glyphicon glyphicon-thumbs-down"></i>
+            <br />
+            <br />
+            <hr />
+            Ou Aprovar o Escaminhamento <a href="~/Encaminhamento/AprovarEncModerador/@ViewBag.ConsultaUmEncaminhamento.id" class="btn btn-success" title="Aprovar este Encaminhamento">  <i class="glyphicon glyphicon-thumbs-up">   </i> </a>
+        </form>
+    </div>
+
+<br>
+<hr />
+<div>
+    @Html.ActionLink("Cancelar - Voltar", null, null, null, new { href = Request.UrlReferrer })
+</div>
+
+

@@ -1,0 +1,82 @@
+﻿
+@{
+    ViewBag.Title = "ResponderEncVereador";
+}
+
+
+<div>
+    @using (Html.BeginForm("Create", "AssignRole"))
+    {
+        if (Session["FalhaResposta"] != null)
+        {
+            <script language="javascript">
+            alert("Falha no retorno dos dados do Encaminhamento.");
+            </script>
+            Session["FalhaResposta"] = null;
+        }
+
+        if (Session["alertaEventoSucesso"] != null)
+        {
+            <script language="javascript">
+                alert("Resposta do Encaminhamento efetuada com Sucesso.");
+            </script>
+            Session["alertaEventoSucesso"] = null;        // desativa alerta.
+        }
+
+    }
+</div>
+
+
+<h2> Consulta - Responder Encaminhamentos</h2>
+<hr />
+<br />
+
+
+<div>
+
+    <table class="table-striped table-hover" cellspacing="10" cellpadding="10">
+        <thead>
+            <tr>
+                <th>Tipo Encaminhamento</th>
+                <th>Data</th>
+                <th>Descrição</th>
+            </tr>
+        </thead>
+        @foreach (var itm in @ViewBag.ListaEncRespondidos)
+        {
+            <tr>
+                <td>
+                    @{
+                        if (@itm.idTipoEnc == 1)
+                        { <div>Projeto de Lei</div> }
+                        else if (@itm.idTipoEnc == 2)
+                        { <div>Crítica</div>     }
+                        else if (@itm.idTipoEnc == 3)
+                        { <div>Sugestão</div>     }
+                        else if (@itm.idTipoEnc == 4)
+                        { <div>Denûncia</div>     }
+                        else
+                        { <div>Agradecimento</div>    }
+                    }
+                </td>
+                
+                <td> @itm.dataEnc.ToString("dd/MM/yyyy")  </td>
+                <td width="700">@itm.descricao</td>
+
+                <td>
+                    <a href="~/Encaminhamento/RegistrarRespostaEncVereador/@itm.id" class="btn btn-success" title="Responder este Encaminhamento">  <i class="glyphicon glyphicon-comment">   </i> </a>
+                </td>
+            </tr>
+                        }
+    </table>
+</div>
+
+
+<br>
+<hr />
+<div>
+    <form action="/Usuario/Login" method="post">
+        <button type="submit" class="btn btn-danger" name="btAlterarPerfil">Voltar</button>
+    </form>
+</div>
+

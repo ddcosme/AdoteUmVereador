@@ -1,0 +1,98 @@
+﻿
+@{
+    ViewBag.Title = "AlterarPerfil";
+}
+
+<h2>Alterar Perfil</h2>
+
+<hr />
+
+  
+
+<div>
+    @using (Html.BeginForm("Create", "AssignRole"))
+    {
+        if (Session["alertaUsuarioFalha"] != null)
+        {
+            <script language="javascript">
+                alert("Falha na alteracao.");
+            </script>
+        }
+        Session["alertacaoUsuarioSucesso"] = null;        // desativa alerta.
+    }
+</div> 
+
+
+<form action="/Usuario/ConfirmarAlterarPerfil" method="post">
+    <table cellpadding="30" cellspacing="30" align="center" style="background-color:#eeeeee">
+        <tr>
+            <td>
+                <div>
+                    <img src="/Imagens/ImgPerfil.jpg" width="200" height="200">
+                    <br />
+                    Número do RG: @ViewBag.UsuarioSessao.rg
+                    <br />
+                    CPF: @ViewBag.UsuarioSessao.cpf
+                    <br />
+                    Nome: @ViewBag.UsuarioSessao.nome
+                    <br />
+
+                    @using (Html.BeginForm("Create", "AssignRole"))
+                    {
+                        if (ViewBag.UsuarioSessao.tipo == 0)
+                        {
+                            <div>Vereador: @ViewBag.UsuarioSessao.municipio </div>
+                        }
+                    }
+                </div>
+            </td>
+
+            <td>
+                <div>
+                    E-mail:
+                    <input type="text" id="email" name="email" required size="50" maxlength="50" value="@ViewBag.UsuarioSessao.email" />
+                </div>
+                <div>
+                    Estado:
+                    <input type="text" id="estado" name="estado" maxlength="2" size="2" required value="@ViewBag.UsuarioSessao.estado" />
+                </div>
+                <div>
+                    Senha:
+                    <input type="password" id="senha" name="senha" required value="@ViewBag.UsuarioSessao.senha" />
+                </div>
+
+                <input type="text" name="Id" value="@ViewBag.UsuarioSessao.Id" hidden />
+                <input type="text" name="rg" value="@ViewBag.UsuarioSessao.rg" hidden />
+                <input type="text" name="cpf" value="@ViewBag.UsuarioSessao.cpf" hidden />
+                <input type="text" name="nome" value="@ViewBag.UsuarioSessao.nome" hidden />
+                <input type="text" name="dataNascimento" value="@ViewBag.UsuarioSessao.dataNascimento" hidden />
+                <input type="text" name="sexo" value="@ViewBag.UsuarioSessao.sexo" hidden />
+                <input type="text" name="municipio" value="@ViewBag.UsuarioSessao.municipio" hidden />
+                <input type="text" name="status" value="@ViewBag.UsuarioSessao.status" hidden />
+                <input type="text" name="tipo" value="@ViewBag.UsuarioSessao.tipo" hidden />
+                <input type="text" name="IdVereador" value="@ViewBag.UsuarioSessao.IdVereador" hidden />
+
+
+                <div>
+                    <button type="submit" class="btn btn-success">Alterar Cadastro</button>
+                </div>
+
+
+            </td>
+
+        </tr>
+    </table>
+
+
+</form>
+
+
+
+
+<br />
+
+<div>
+    <form action="/Usuario/Login" method="post">
+        <button type="submit" class="btn btn-danger" name="btAlterarPerfil">Voltar - Cancelar</button>
+    </form>
+</div>
